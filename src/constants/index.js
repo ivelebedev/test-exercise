@@ -1,0 +1,7 @@
+export const messageConstants = {
+    SEND_REQUEST: 'SEND_REQUEST',
+    SEND_SUCCESS: 'SEND_SUCCESS',
+    SEND_FAILURE: 'SEND_FAILURE',
+	
+	ADD_MESSAGE: 'ADD_MESSAGE'
+};

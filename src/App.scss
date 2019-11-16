@@ -1,0 +1,160 @@
+@import-normalize;
+
+
+/*.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}*/
+
+body {
+	background: #F7F7F7;
+	
+	font-family: SF Pro Text;
+	font-size: 16px;
+	line-height: 20px;
+	color: #000;
+}
+.container {
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.header {
+
+	padding: 40px 0 20px;
+
+	&__logo {
+		display: flex;
+	}
+	&__figure {
+		background: #C4C4C4;
+		width: 60px;
+		height: 60px;
+		
+		&--circle {
+			border-radius: 50%;
+		}
+		&--rect {
+			width: 30px;
+		}
+		&--parallelogram {
+			width: 30px;
+			transform: skewX(-25deg);
+		}
+	}
+	&__figure + &__figure {
+		margin-left: 10px;
+	}
+}
+
+.input {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 5px 10px;
+	outline: 0;
+	font-family: SF Pro Text;
+}
+.input + .input {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.btn {
+	background: linear-gradient(180deg, #45A6FF 0%, #0055FB 100%), #C4C4C4;
+	border-radius: 5px;
+	font-size: 18px;
+	line-height: 30px;
+	color: #fff;
+	padding: 5px 10px;
+	border: 0;
+	outline: 0;
+	min-width: 140px;
+	cursor: pointer;
+	transition: all 3000ms ease-in-out;
+}
+.btn:hover {
+	background: linear-gradient(0deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)), linear-gradient(180deg, #45A6FF 0%, #0055FB 100%), #C4C4C4;
+}
+
+.form {
+	
+	width: 100%;
+	background: #fff;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	padding: 30px;
+	margin-bottom: 50px;
+	
+	&__title {
+		font-size: 30px;
+		line-height: 40px;
+		margin-bottom: 20px;
+	}
+	
+	&__row {
+		margin-bottom: 20px;
+	}
+	
+	&__label {
+		color: rgba(0, 0, 0, 0.6);
+		margin-bottom: 5px;
+	}
+	
+	&__input {
+		display: flex;
+	}
+
+}
+
+.messages {
+	font-size: 16px;
+	line-height: 25px;
+	padding: 0 30px;
+	width: 100%;
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		margin: 0 0 15px 0;
+		
+		&--header {
+			border-bottom: 1px solid #DDDDDD;
+			color: #DDDDDD;
+			padding: 10px 0;
+			margin: 0 0 10px 0;
+		}
+	}
+	&__item {
+		&--date {
+			width: 100px;
+		}
+		&--theme {
+			width: calc(100% - 200px - 40px);
+		}
+		&--status {
+			width: 100px;
+			text-align: right;
+		}
+	}
+}
