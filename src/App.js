@@ -6,23 +6,36 @@ import { actions } from './actions';
 import Header from './components/Header';
 import FormCode from './components/FormCode';
 import Messages from './components/Messages';
-//import logo from './logo.svg';
+
 import './App.scss';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.tick = this.tick.bind(this);
 		//console.log(this.props);
+		this.state = {
+			timer: null
+		};
 	}
 	handleSubmit(values) {
-		//console.log(this);
 		this.props.addMessage(values);
+	}
+	componentDidMount() {
+		let timer = setInterval(this.tick, 5000);
+		this.setState({timer});
+	}
+	componentWillUnmount() {
+		this.clearInterval(this.state.timer);
+	}
+	tick() {
+		const { getStatus, messages } = this.props;
+		getStatus(messages.items);
 	}
 	render() {
 		
 		const { messages } = this.props;
-		console.log(messages);
 		
 		return (
 			<div className="App">
@@ -47,7 +60,8 @@ function mapState(state) {
 }
 
 const actionCreators = {
-    addMessage: actions.addMessage
+    addMessage: actions.addMessage,
+	getStatus: actions.getStatus
 }
 
 const connectedApp = connect(mapState, actionCreators)(App);

@@ -8,7 +8,8 @@ const sendsay = new Sendsay({
 });
 
 export const service = {
-    sendMessage
+    sendMessage,
+	getStatus
 };
 
 function sendMessage(message) {
@@ -27,6 +28,24 @@ function sendMessage(message) {
 			mca: [
 				message.to_email
 			]
+		}
+	).then(handleResponse);
+	
+}
+
+function getStatus(messages) {
+
+	const queries = messages.map(item => ({
+			action: "track.get",
+			id: item.track
+		})
+    ); 
+	
+	return sendsay.request(
+		{
+			action: "batch",
+			stop_on_error: 1,
+			do: queries
 		}
 	).then(handleResponse);
 	
