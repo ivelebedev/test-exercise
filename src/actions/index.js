@@ -17,13 +17,15 @@ function addMessage(message) {
 	message.date = getNowDate();
 	message.status = '0';
 	
+	console.log(message);
+	
 	return dispatch => {
         dispatch(request());
 
         service.sendMessage(message)
             .then(
                 result => dispatch(success(result, message)),
-                error => dispatch(failure(error.toString()))
+                error => dispatch(failure(error))
             );
     };
 
@@ -34,18 +36,21 @@ function addMessage(message) {
 }
 function getStatus(messages) {
 	
-	const filtered = messages.filter(item => item.status === '0');
-	console.log(filtered);
-	
 	return dispatch => {
-        dispatch(request());
+		
+		const filtered = messages.filter(item => item.status !== '-2');
+		console.log(filtered.length);
 
-        service.getStatus(filtered)
-            .then(
-                result => dispatch(success(result)),
-                error => dispatch(failure(error.toString()))
-            );
-    };
+		if(filtered.length > 0) {
+			dispatch(request());
+
+			service.getStatus(filtered)
+				.then(
+					result => dispatch(success(result)),
+					error => dispatch(failure(error.toString()))
+				);
+		}
+	};
 
     function request() { return { type: messageConstants.GETSTATUS_REQUEST } }
     function success(result) { return { type: messageConstants.GETSTATUS_SUCCESS, payload: result } }

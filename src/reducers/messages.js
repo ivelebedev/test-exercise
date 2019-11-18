@@ -26,16 +26,21 @@ export function messages(state = { items: [] }, action) {
 			...state
 		};
     case messageConstants.GETSTATUS_SUCCESS:
-		//console.log(state.items, action.payload.result, "AAAAAAAAA");
+	
 		const result = action.payload.result;
+		const arr = [];
+		for(let i=0;i<state.items.length;i++) {
+			for(let j=0;j<result.length;j++) {
+				if(state.items[i].track === result[j].obj.id) {
+					state.items[i]['status'] = result[j].obj.status;
+				}
+			}
+			arr.push(state.items[i]);
+		}
+		
 		return {
 			...state,
-			items: state.items.map((item, index) => 
-				result[index] && item.track === action.payload.result[index].obj.id ? { ...item, status: action.payload.result[index].obj.status } : item
-			)
-			/*items: result.map((item, index) => 
-				item.obj.id === state.items[index].track ? { ...state.items[index], status: item.obj.status } : state.items[index]
-			)*/
+			items: arr
 		};
     case messageConstants.GETSTATUS_FAILURE:
 		return { 

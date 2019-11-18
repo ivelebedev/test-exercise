@@ -4,16 +4,16 @@ import { Field, reduxForm } from 'redux-form';
 const validate = values => {
 	const errors = {}
 	
-	if (!values.name_from) {
-		errors.name_from = 'Не может быть пустым'
+	if (!values.from_name) {
+		errors.from_name = 'Не может быть пустым'
 	} else if (values.name_from.length < 2) {
-		errors.name_from = 'Minimum be 2 characters or more'
+		errors.from_name = 'Minimum be 2 characters or more'
 	}
 	
-	if (!values.email_from) {
-		errors.email_from = 'Не может быть пустым'
+	if (!values.from_email) {
+		errors.from_email = 'Не может быть пустым'
 	} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email_from)) {
-		errors.email_from = 'Invalid email address'
+		errors.from_email = 'Invalid email address'
 	}
 	
 	if (!values.theme) {
@@ -21,6 +21,8 @@ const validate = values => {
 	} else if (values.theme.length < 2) {
 		errors.theme = 'Minimum be 2 characters or more'
 	}
+	
+	console.log(values, errors);
 	
 	return errors
 }
